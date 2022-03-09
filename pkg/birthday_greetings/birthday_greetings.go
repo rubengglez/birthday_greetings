@@ -1,7 +1,6 @@
-package main
+package birthday_greetings
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -53,8 +52,4 @@ func birthday(dateOfBirth string) Birthday {
 		Month: int(when.Month()),
 		Day:   when.Day(),
 	}
-}
-
-func main() {
-	fmt.Println("First commit")
 }
