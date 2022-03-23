@@ -1,25 +1,12 @@
 package birthday_greetings
 
 import (
+	"log"
 	"time"
+
+	"github.com/rubengglez/birthday_greetings/internal/notifier"
+	"github.com/rubengglez/birthday_greetings/internal/retriever"
 )
-
-type Friend struct {
-	LastName    string
-	FirstName   string
-	DateOfBirth string
-	Email       string
-}
-
-type Amigos []Friend
-
-type Retriever interface {
-	Friends() Amigos
-}
-
-type Notifier interface {
-	Notify(message, who string)
-}
 
 type Date interface {
 	Month() int
@@ -31,13 +18,16 @@ type Birthday struct {
 	Day   int
 }
 
-func BirthdayGreetings(retriever Retriever, notifier Notifier, date Date) {
+func BirthdayGreetings(retriever retriever.Retriever, n notifier.Notifier, date Date) {
 	friends := retriever.Friends()
 	for _, friend := range friends {
 		birthday := birthday(friend.DateOfBirth)
 		if birthday.Day == date.Day() && birthday.Month == date.Month() {
-			notifier.Notify("ola k ase", friend.Email)
+			log.Println("voy a notificar a", friend)
+			n.HappyBirthday(friend)
+			continue
 		}
+		log.Println("NO fue notificado", friend)
 	}
 }
 
