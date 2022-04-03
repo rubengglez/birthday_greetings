@@ -11,12 +11,19 @@ type MemoryRetriever struct{}
 func (r *MemoryRetriever) Friends() shared.Friends {
 	friends := make(shared.Friends, 0)
 
-	friend := shared.Friend{
+	manolo := shared.Friend{
 		LastName:    "Merlo",
 		FirstName:   "Manolo",
 		DateOfBirth: "1982/10/08",
-		Email:       "example@dot.com",
+		Email:       "manolo@dot.com",
 	}
-	friends = append(friends, friend)
+	paco := shared.Friend{
+		LastName:    "Merlo",
+		FirstName:   "Paco",
+		DateOfBirth: "1982/04/03",
+		Email:       "paco@dot.com",
+	}
+	friends = append(friends, manolo)
+	friends = append(friends, paco)
 	return friends
 }

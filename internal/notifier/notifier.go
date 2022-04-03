@@ -18,7 +18,9 @@ type Sender interface {
 type DefaultNotifier struct{}
 type defaultSender struct{}
 
-func (s *defaultSender) Send(email, subject, body string) {}
+func (s *defaultSender) Send(email, subject, body string) {
+	fmt.Println("notifying to", email, subject, body)
+}
 
 func (n *DefaultNotifier) HappyBirthday(f shared.Friend) {
 	sender := &defaultSender{}
